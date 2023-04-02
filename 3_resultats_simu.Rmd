@@ -1,0 +1,132 @@
+## Résultats
+
+### Statistiques descriptives
+
+Les statistiques descriptives de notre échantillon sont en \autoref{descriptives}. Les scores sont simulés aléatoirement, avec des écarts-types arbitraires et certains aspects sont approximatifs du fait des contraintes techniques de notre simulation (les minima et maxima par exemple sont souvent irréalistes ou impossibles). Dans l'étude réelle nous y adjoindrons les données démographiques collectées : les âges, genres, études et secteurs d'activité des participants, à la fois à des fins exploratoires et de contrôle pour certaines analyses^[Le domaine d'intérêt - grossièrement sciences/arts/autres - a par exemple été lié aux capacités d'imagerie objet et spatiale [@kozhevnikovCreativityVisualizationAbilities2013; @kozhevnikovSpatialVisualizationPhysics2007] : cette variable aurait donc à la fois un intérêt exploratoire (quelle proportion d'aphantasiques ?) et de contrôle (analyse par secteur si celui-ci a un effet significatif).].
+
+```{r,descriptives}
+```
+
+### Analyse Factorielle Multiple et GGM
+
+Comme nous l'avons vu, il existe de nombreux liens entre nos variables initiales (ici par construction, à des fins d'observation). Nous avons réalisé des corrélations partielles entre nos variables, qui peuvent être analysées selon la théorie des graphes par des modèles graphiques gaussiens (GGM). Le modèle ajusté à nos variables est représenté en \autoref{ggm_graph} : il a été ajusté à l'aide de la fonction `correlations` du package éponyme. Un GGM comprend un ensemble de variables représentées par des cercles ("nœuds"), et un ensemble de lignes qui visualisent les relations entre elles dont l'épaisseur représente la force de l'association [@bhushanUsingGaussianGraphical2019]. Parmi les corrélations remarquables, le VVIQ et l'OSIQ-objet sont extrêmement proches, le MRT, le SRI, l'OSIQ-spatial et les blocs de Corsi (toutes des tâches impliquant de l'imagerie spatiale) forment un réseau très corrélé, l'empan de chiffres est proche des blocs de Corsi (tâches d'empan mnésiques). La \autoref{correlation_matrix} en \nameref{annexes} présente l'ensemble des coefficients de corrélation partiels et leur significativité.
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r,ggm_graph}
+```
+```{=latex}
+\caption{Représentation du GGM ajusté sur nos données. Chaque noeud représente une variable. Les liens bleus dénotent une corrélation positive, les rouges une corrélation négative, et leur épaisseur dépend de la force de cette corrélation. Le modèle illustre les choix de pondération réalisés à l'étape de simulation : on peut notamment voir des corrélations très prononcées entre le VVIQ et l'OSIQ-objet (r = 0.77, p<.001) qui évaluent tous deux l'imagerie objet, le Digit Span et les blocs de Corsi (r = 0.68, p<.001) qui évaluent entre autres la mémoire de travail, ou encore entre l'OSIQ-spatial et le SRI, qui sont respectivement l'auto-évaluation et la tâche les plus spécifiques de l'imagerie spatiale.}
+\label{ggm_graph}
+\end{figure}
+```
+
+Nous avons évalué que les données étaient adaptées à une analyse factorielle multiple avec plusieurs indices. La mesure Kaiser, Meyer, Olkin (KMO) de l'adéquation de l'échantillonnage suggère que les données semblent appropriées à une analyse factorielle (KMO = 0,82), et le test de sphéricité de Bartlett suggère qu'il y a une corrélation significative suffisante dans les données pour une analyse factorielle (Chisq(66) = 3194.04, p < .001). Ces deux indices ont été calculés avec la fonction `check_factorstructure` du package *parameters*.
+
+Le choix de trois dimensions pour l'analyse était soutenu par cinq (35,71%) méthodes sur quatorze (dont CNG, coordonnées optimales, analyse parallèle, critère de Kaiser, Scree (SE)).^[Nous avons par ailleurs mené une analyse à quatre facteurs, dans la mesure où ce nombre était le deuxième le plus supporté par les indices de détermination : la quatrième dimension identifiée par cette analyse rassemble quasi-exclusivement les scores au Corsi et à l'Empan Verbal, soit les deux tâches de mémoire de travail. Voir la \autoref{loadings_graph_annex} en \nameref{annexes}. Les 4 facteurs latents ont représenté 67,82% de la variance totale des données originales (MR1 = 25,86%, MR2 = 21,57%, MR3 = 12,91%, MR4 = 7,48%).]. Nous avons donc conduit l'analyse factorielle multiple avec la fonction `factor_analysis` du package *parameters* sur R, réglée pour trois facteurs et une rotation "clusters". La \autoref{loadings_tbl} présente les capacités explicatives de chaque composante sur la variance de totale de l'échantillon. Les 3 facteurs latents ont représenté 62,55% de la variance totale des données originales (MR1 = 26,91%, MR2 = 21,53%, MR3 = 14,11%). La distribution des poids de chaque variable selon les facteurs est présentée en \autoref{loadings_graph}.
+
+```{r,loadings_tbl}
+```
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r,loadings_graph}
+```
+```{=latex}
+\caption{Poids de chaque variable dans l'Analyse Factorielle Multiple à trois facteurs.}
+\label{loadings_graph}
+\end{figure}
+```
+
+A partir de cette distribution et de l'analyse en graphes de nos facteurs, nous avons catégorisé les trois composantes : la première, la plus corrélée au SRI, au MRT, à l'OSIQ-Spatial et aux blocs de Corsi (toutes des tâches ayant une composante spatiale) sera appelée **Imagerie Spatiale**. La seconde, corrélée au VVIQ, à l'OSIQ-Objet et au Wason, sera l'**Imagerie Objet**. La dernière, corrélée aux Matrices de Raven, aux Similitudes, à la compréhension en lecture et au WCST, sera le **Raisonnement**.
+
+### Analyse en *clusters*
+
+Nous avons vérifié si l'ensemble de données était approprié pour le clustering via la statistique H de Hopkins : H = 0.23. Si la valeur de la statistique de Hopkins est proche de 0 (inférieure à 0,5), alors nous pouvons rejeter l'hypothèse nulle et conclure que l'ensemble de données est significativement clusterisable. Une valeur de H inférieure à 0,25 indique une tendance au clustering au niveau de confiance de 90% [@lawsonNewIndexClustering1990].
+
+<!--
+La création de ces profils dans notre échantillon repose sur les trois compétences du langage écrit : fluence et compréhension en lecture et orthographe.
+-->
+
+Le nombre de clusters optimal a été calculé grâce à l'ensemble des indices présents dans le package R NbClus [@charradNbClustPackageDetermining2014]. 38% indices (11 sur 29) proposait un nombre optimal de deux clusters pour notre échantillon, reflétant nos connaissances *a priori* et la construction de notre structure de facteurs sur la base dichotomique aphantasiques/non-aphantasiques que nous connaissons. Néanmoins, 27.5% des indices (8 sur 29 - Elbow, Silhouette, Ch, CCC, Cindex, DB, Duda, Pseudot2) soutenaient le choix de 4 clusters. A des fins exploratoires, et pour mettre en évidence l'intérêt potentiel de notre démarche analytique, nous avons décidé de mener nos analyses sur 4 clusters.         
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r,kmeans_plot}
+```
+```{=latex}
+\caption{Représentation des clusters reconnus par la méthode des 'k-means', selon les deux composantes principales de l'AFM.}
+\label{kmeans_plot}
+\end{figure}
+```
+
+Une implémentation de l’algorithme des *k-means* a donc été conduite avec 4 clusters sur l’ensemble de l’échantillon. Comme décrit plus haut, suite au calcul de la matrice de dissimilarité, les observations sont attribuées au cluster le plus probable en termes d’assignation. L'algorithme entier est répété un grand nombre de fois (n = 200 ici) avec des "points de départ" - l'endroit d'initialisation des centres des clusters - différents. La partition choisie place chaque participant dans le cluster où il était "majoritairement" sur toutes les répétitions. Le résultat des k-means est représenté dans la \autoref{kmeans_plot}, et les profils cognitifs associés sur les trois capacités définies par l'AFM est en \autoref{radar}.         
+
+Par ailleurs, l'analyse de clusters montre que les quatre clusters expliquent 60,70% de la variance totale des données originales. Nous avons alors mené une analyse comparative avec la solution à deux clusters, qui n'expliqueraient "que" 37,26% de la variance totale des données, s'ajoutant à l'argumentaire de notre choix de quatre clusters.
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r,radar, out.width="100%"}
+```
+```{=latex}
+\caption{Diagramme représentatant les profils cognitifs associés à chaque cluster, selon  trois dimensions principales : l'imagerie visuelle-objet, l'imagerie visuo-spatiale et le raisonnement.}
+\label{radar}
+\end{figure}
+```
+
+### Composition et description des clusters
+
+Les profils ont ensuite été étudiés sur leur composition en fonction du diagnostic initial et sur les compétences cognitives du profil et celles sous-tendant ces performances grâce à des comparaisons de groupes.
+
+La \autoref{repartition} présente la répartition dans les nouveaux clusters des participants initialement identifiés comme aphantasiques ou non par le VVIQ. Les clusters 3 et 4 sont représentatifs de l'importance du critère de l'imagerie visuelle-objet : ils sont composés respectivement de 100% de contrôles et de 100% d'aphantasiques. Les clusters 1 et 2 sont néanmoins plus équilibrés.  
+
+Dans le but d’interpréter les clusters à partir des scores des compétences les composant, une moyenne en dessous de 0 (moyenne standardisée) est considérée comme déficitaire et une moyenne au-dessus de 0 comme non-déficitaire. Les moyennes de chaque cluster aux variables avec les tailles d’effectif sont présentés dans la \autoref{repartition}.
+
+```{r,repartition}
+```
+
+Nous pourrons par la suite mener des analyses plus poussées par cluster pour raffiner la description de chaque profil et son fonctionnement (notamment tester des liens potentiels avec les statistiques démographiques), mais celles-ci présenteraient peu d'intérêt dans le cas présent, les données simulées ne représentant personne.
+
+Dans l’objectif de mieux décrire les sous-groupes, nous réaliserons des analyses de variance univariées. Nous avons ajusté des modèles linéaires sur nos données pour prédire les nouveaux scores de *Raisonnement*, d'*Imagerie Objet* et d'*Imagerie Spatiale* en fonction des clusters, et ainsi mieux comparer et caractériser nos sous-groupes. Ces modèles ont permis d'expliquer une part de variance importante et statistiquement significative des scores en Raisonnement ($r^2$ = 0.49, *F*(3,
+396) = 128.86, *p* < .001, adj. $r^2$ ajusté = 0.49), en Imagerie Objet ($r^2$
+= 0.69, *F*(3, 396) = 290.12, *p*< .001, $r^2$ ajusté = 0.68) et en Imagerie Spatiale ($r^2$ = 0.56, *F*(3, 396) = 168.39, *p* < .001, $r^2$ ajusté = 0.56).    
+
+A cette étape, les post-hoc des modèles avec un intercept à 0 nous permettent de retrouver les valeurs de la \autoref{repartition}. Dans l'analyse effective, nous réaliserions *tendanciellement* (*p* = .06) des post-hocs deux-à-deux plus ciblés avec la correction que nous choisirons : néanmoins dans ces analyses prévisionnelles, tout est extrêmement significatif par construction et ces tests seraient inutilement lourds. La \autoref{lollipop} présente les comparaisons des différentes moyennes dans un histogramme de type *Cleveland* (dit *lollipop chart*).
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r,lollipop}
+```
+```{=latex}
+\caption{Représentation des moyennes de chaque cluster pour les trois capacités cognitives.}
+\label{lollipop}
+\end{figure}
+```
+
+
+
+<!--
+Les comparaisons ont été ajustées sur un intercept centré par rapport aux données standardisées, pour pouvoir contraster chaque cluster par rapport à la moyenne globale. Nous observons pour tous les clusters des effets statistiquement significatifs sur les trois composantes (les *p* values seront précisées plus bas). Ainsi nous observons, par cluster :
+ - Le cluster 1 a un effet négatif sur le Raisonnement (beta = -0.18, 95% CI [-0.30, -0.06],
+t(396) = -2.95, p = 0.003; Std. beta = -0.20, 95% CI [-0.33, -0.07]), sur l'Imagerie Objet (beta = -0.77, 95% CI [-0.88, -0.67],
+t(396) = -14.93, p < .001; Std. beta = -0.78, 95% CI [-0.88, -0.68]) et sur l'Imagerie Spatiale (beta = -0.24, 95% CI [-0.36, -0.12],
+t(396) = -3.98, p < .001; Std. beta = -0.25, 95% CI [-0.37, -0.13]).
+ - Le cluster 2 a un effet positif sur le Raisonnement (beta = 0.63, 95% CI [0.48, 0.77],
+t(396) = 8.43, p < .001; Std. beta = 0.68, 95% CI [0.52, 0.84]), positif sur l'Imagerie Objet (beta = 0.71, 95% CI [0.59, 0.83],
+t(396) = 11.26, p < .001; Std. beta = 0.72, 95% CI [0.59, 0.84]) et sur l'Imagerie Spatiale (beta = 0.42, 95% CI [0.28, 0.57],
+t(396) = 5.72, p < .001; Std. beta = 0.43, 95% CI [0.28, 0.58])
+- Le cluster 3 a un effet positif sur le Raisonnement (beta = 0.85, 95% CI [0.70, 0.99],
+t(396) = 11.60, p < .001; Std. beta = 0.92, 95% CI [0.76, 1.08]), négatif sur l'Imagerie Objet (beta = -0.92, 95% CI [-1.04, -0.80],
+t(396) = -14.86, p < .001; Std. beta = -0.93, 95% CI [-1.05, -0.80]), et positif sur l'Imagerie Spatiale (beta = 1.19, 95% CI [1.05, 1.33],
+t(396) = 16.33, p < .001; Std. beta = 1.21, 95% CI [1.06, 1.35])
+- Le cluster 4 a un effet négatif sur le Raisonnement (beta = -0.77, 95% CI [-0.88, -0.65],
+t(396) = -13.12, p < .001; Std. beta = -0.83, 95% CI [-0.96, -0.71]), positif sur l'Imagerie Objet (beta = 0.86, 95% CI [0.76, 0.96],
+t(396) = 17.32, p < .001; Std. beta = 0.87, 95% CI [0.77, 0.96]) et négatif sur l'Imagerie Spatiale (beta = -0.81, 95% CI [-0.92, -0.69],
+t(396) = -13.79, p < .001; Std. beta = -0.82, 95% CI [-0.93, -0.70]).
+-->
+

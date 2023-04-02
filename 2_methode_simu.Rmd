@@ -1,0 +1,131 @@
+# Expérience
+
+## Méthode
+
+### Participants
+
+Nous recruterons des participants à partir de mi-février/début mars, lorsque l'expérience sera codée et prête à être diffusée en ligne. Pour estimer un ordre de grandeur du nombre de participants nécessaire pour obtenir des résultats intéressants, nous pouvons nous baser sur les calculs de puissance de @dawesCognitiveProfileMultisensory2020, qui ont mené une étude assez proche de la nôtre impliquant douze questionnaires et ayant pour objectif de mieux cerner le profil des aphantasiques. Ceux-ci ont estimé que pour une taille d'effet modérée des comparaisons, une puissance de 80% et avec un $\alpha$ très conservateur de 0.0002 (voir la section *\nameref{analyses}*), au moins 170 participants seraient nécessaires par groupe expérimental.   
+
+Les participants devront avoir entre 18 et 50 ans et être locuteurs natifs français^[Il est à noter que dans l'étude de Dawes et al. [-@dawesCognitiveProfileMultisensory2020], 31 pays de résidence ont été répertoriés, avec 83% (*N* = 220) déclarant que l'anglais était leur première langue, et 88% (*N* = 235), s'identifiant comme blancs/caucasiens. Les résultats sont néanmoins cohérents avec le reste de la littérature sur l'aphantasie, avec aucun effet du langage ou de l'origine géographique. Cette étude interroge sur le potentiel intérêt de tenter de diffuser la présente étude à l'international.], avoir une vision normale ou corrigée et ne pas présenter de trouble de la lecture. Les participants aphantasiques seront recrutés en ligne sur des espaces spécifiques à leur condition (forums, groupes sur les réseaux sociaux, etc.). Nous nous intéressons à l'étude de l'aphantasie congénitale, les participants ne devront donc pas présenter d'antécédents de maladies neurologiques ou psychiatriques.      
+
+Le critère répandu dans les études sur l'aphantasie pour identifier la condition est celui de l'auto-évaluation par le questionnaire VVIQ (Vividness of Visual Imagery Questionnaire, @marksVividnessVisualImagery1973), avec un score inférieur à 32 (voir la section *\nameref{questionnaires}*). Nous disposerons aussi de la composante objet de l'OSIQ (Object and Spatial Imagery Questionnaire, @blajenkovaObjectspatialImageryNew2006), fortement corrélée au VVIQ, fournissant donc des items supplémentaires : le seuil inférieur de ce questionnaire est évalué à 36, sur la base de deux écart-types à la moyenne de l'échantillon de @blajenkovaObjectspatialImageryNew2006. L'OSIQ, dans sa composante spatiale, sera par ailleurs utilisé pour l'auto-évaluation des capacités d'imagerie visuospatiales des participants, justifiant son utilisation en parallèle du VVIQ.   
+
+En l'absence de données réelles de participants, nous avons donc préparé nos analyses prévisionnelles sur des données simulées sur R [@R-base]. Les paramètres de cette simulation (les résultats potentiels de chaque groupe) ont été basés sur la littérature et sur nos hypothèses : nous définirons donc le protocole dans un premier temps, puis reviendrons sur cette simulation dans la *section \ref{simulation}* dédiée.
+
+### Équipement et procédure
+
+Le protocole sera composé de plusieurs questionnaires et tâches qui seront administrées en ligne via un serveur JATOS [@langeJustAnotherTool2015]. Les questionnaires seront codés sur [SurveyJS](https://surveyjs.io/), une bibliothèque JavaScript Open Source dédiée à la création de questionnaires, et les tâches seront codées sur OpenSesame [@mathotOpenSesameOpensourceGraphical2012], une interface graphique de construction d'expériences comportementales. Avant les premiers questionnaires seront recueillies des données démographiques (âge, genre, métier et/ou études). Tous les participants devront donner leur consentement éclairé avant de commencer l'étude. La participation sera volontaire et sans compensation.
+
+### Questionnaires
+
+#### *Vividness of Visual Imagery Questionnaire* (VVIQ) {.unnumbered}
+
+Le VVIQ [@marksVividnessVisualImagery1973] est une échelle d'auto-évaluation de 16 items qui demande aux participants d'imaginer une personne ainsi que plusieurs scènes et d'évaluer la vivacité de ces images mentales à l'aide d'une échelle de 5 points allant de 1 ("Aucune image, vous savez seulement que vous pensez à l'objet") à 5 ("Parfaitement clair et aussi vif que la vision normale"). Le score total de 32 conventionnellement utilisé comme la limite pour définir l'aphantasie équivaut à un score de 2 (" vague et faible ") pour chaque item du questionnaire, là où 1 est " Aucune imagerie du tout, vous savez seulement que vous pensez à l'objet ").
+
+#### *Object and Spatial Imagery Questionnaire* (OSIQ). {.unnumbered}
+
+L'OSIQ [@blajenkovaObjectspatialImageryNew2006] est une échelle de 30 items qui demande aux participants d'indiquer dans quelle mesure chacune des affirmations sur la capacité d'imagerie visuelle-objet (par exemple : "Quand j'imagine le visage d'un ami, j'ai une image parfaitement claire et lumineuse") et sur la capacité d'imagerie visuospatiale (par exemple : "Je suis un bon joueur de Tetris") s'applique à eux sur une échelle de 5 points allant de 1 ("Totalement en désaccord") à 5 ("Totalement d'accord"). Les domaines de l'imagerie spatiale et de l'imagerie des objets de l'OSIQ comportent chacun 15 items dont la moyenne est calculée pour obtenir un score  pour chaque domaine.
+
+
+#### Metacognition Awareness Inventory (MAI). {.unnumbered}
+
+Le MAI [@schrawAssessingMetacognitiveAwareness1994] est une échelle d'auto-évaluation en 52 items, chaque item évalué sur une échelle allant de 1 à 5. Elle mesure la conscience métacognitive des adultes dans huit sous-composantes rassemblées dans deux larges catégories, la connaissance de la cognition et la régulation de la cognition.
+
+### Tâches
+
+#### Matrices Progressives Standard de Raven (RSPM). {.unnumbered}
+
+Les RSPM [@ravenRavenProgressiveMatrices1938] se composent de 60 items divisés en cinq ensembles. Chaque item consiste à compléter une figure manquante dans une matrice de 3x3 figures en extrayant et suivant les règles logiques sous-jacentes à l'organisation des figures entre elles. Les items ont une difficulté croissante. A la fin d'une série, la difficulté redevient facile mais la règle logique change, et les séries entre elles ont une difficulté croissante. Les matrices ont pour objectif d'évaluer le raisonnement abstrait, dans un versant non-verbal de l'intelligence fluide. Nous utiliserons potentiellement une version clinique raccourcie de deux ensembles de 9 items [@bilkerDevelopmentAbbreviatedNineItem2012] prédisant le score aux 60 items avec une bonne précision. Ceux-ci pourraient représenter un gain potentiel de 75% du temps, pour des caractéristiques similaires au test complet.
+
+#### Tâche de Wason.{.unnumbered}
+
+La tâche de Wason [@wasonReasoningRule1968] est une très courte tâche de raisonnement se présentant sous la forme d'un problème posé au participant. Pour résoudre celui-ci, le participant doit maîtriser les règles logiques déductives et inférentielles de type "P implique Q" et sa contraposée "Non-Q implique Non-P".
+
+#### Sous-test des Similitudes de la WAIS-IV. {.unnumbered}
+
+Le sous-test des similitudes de la WAIS-IV [@wechslerWechslerAdultIntelligence2008] est composé de 18 paires de mots dont le participant doit identifier la relation qualitative sous-jacente. Il reflète ainsi les capacités d'abstraction, de formation de concepts et le raisonnement verbal.
+
+#### Empan de chiffres envers. {.unnumbered}
+
+Une mesure d'empan mnésique consiste à présenter une séquence d'items à un participant, qui doit les reproduire dans l'ordre ou à l'envers. Ici l'empan de chiffres envers (ou *Reverse Digit Span*) consiste à présenter des chiffres au rythme de 1 par seconde, puis de demander au participant de les rappeler du dernier au premier. La tâche commence par une séquence courte, puis s'allonge à chaque réussite. Le score est le nombre maximum de chiffres rappelés (le nombre de séquences correctement rappelées est aussi utilisé dans la littérature). Les mesures d'empan évaluent toutes en partie la mémoire de travail, mais parmi elles le *reverse digit span* est le plus corrélé avec les mesures d'intelligence fluide ou de fonctions exécutives [@groegerMeasuringMemorySpan1999].
+
+#### Blocs de Corsi. {.unnumbered}
+
+Les blocs de Corsi sont aussi une tâche d'empan mnésique, mêlée avec de la visualisation spatiale [@gibeauCorsiBlocksTask2021]. La tâche consiste à présenter au participant des blocs disposés aléatoirement dans un cadre, puis afficher une séquence (les blocs changeant de couleur tour à tour pour une version informatisée par exemple) et demander au participant de la rappeler. La tâche commence par une séquence courte qui s'allonge à chaque réussite. De même, le score est le nombre maximum de blocs rappelés. 
+
+#### *Wisconsin Card-Sorting Test* (WCST). {.unnumbered}
+
+Dans le WCST  [@heatonWCST64ComputerVersion2000], les participants doivent trier 64 cartes en fonction de leur couleur (rouge, bleu, jaune ou vert), de leur forme (croix, cercle, triangle ou étoile) ou du nombre de figures (un, deux, trois ou quatre). Au cours de la tâche, la règle de tri change discrètement de la couleur à la forme ou au nombre de figures sans que les participants en soient informés. Les participants doivent modifier leurs prédictions et choix en conséquence et trier les cartes en suivant la nouvelle règle de tri : ils reçoivent un feedback pour leur réponse (correcte ou erronée), qui doit leur permettre de s'améliorer avec une extraction implicte des règles. Le WCST est utilisé pour mesurer des processus cognitifs de haut niveau tels que l'attention, la persévérance, la mémoire globale, la pensée abstraite ou la capacité de concentration. De plus, pour être capable de changer de catégorie, il faut avoir une grande flexibilité mentale et une aisance dans la formation de concepts. Le WCST représente donc une évaluation mixte de composantes de raisonnement et de plusieurs fonctions exécutives.
+
+#### Compréhension en lecture.{.unnumbered}
+
+Cette tâche consistera à lire des textes spécifiquement préparés pour requérir de la visualisation mentale et à évaluer les capacités d'extraction d'informations censées être liées aux "images" évoquées par le texte. Les participants auront donc un texte à lire dans un temps limité, puis devront répondre à des questions de compréhension et d'interprétation ou de déduction/inférence sur celui-ci. 
+
+#### Test de Rotation Mentale (MRT). {.unnumbered}
+
+La MRT est une tâche composée de 30 items. Chaque item est une image d'un objet de trois dimensions accompagné de quatre réponses possibles : une étant le même objet ayant subi une rotation, les trois autres étant des rotations du miroir de l'objet initial [@petersRedrawnVandenbergKuse1995; @zhaoSpatialTransformationMental2022]. Les participants doivent choisir quelle image correspond à la première, avec la consigne d'être le plus rapide possible tout en gardant une précision maximale. La mesure d'intérêt pour cette étude sera la précision (la proportion de réponses justes), d'où la considération de celle-ci comme un "score" pour les analyses (le temps de réaction à la MRT est aussi utilisé dans la littérature, à d'autres fins). Bien que la MRT soit en partie intégrée dans le SRI (voir ci-dessous), elle est l'une des mesures les plus communes pour l'évaluation de l'imagerie spatiale dans la littérature, et l'avoir à des fins de comparaison et de reproductibilité peut être intéressant.
+
+#### Spatial Reasoning Inventory (SRI). {.unnumbered}
+
+Le SRI est un questionnaire évaluant plusieurs composantes de l'imagerie visuospatiale, considérée comme un construit complexe en quatre composantes, pour en avoir le reflet le plus fidèle possible [@ramfulMeasurementSpatialAbility2017]. Il inclut notamment des tests de rotation comme le MRT, mais aussi d'orientation dans l'espace, de manipulation dans l'espace et de visualisation.
+
+## Variables
+
+Nos participants seront initialement divisés en deux groupes, et potentiellement subdivisés par la suite. Le ***Groupe*** sera donc notre seule **variable indépendante**. **Nos variables dépendantes** seront donc toutes nos mesures : i.e. les ***Scores*** au VVIQ, à l'OSIQ, au MAI, aux Matrices, aux Similitudes, aux textes de compréhension, au WCST, au MRT, au SRI, la précision au Wason, l'empan mnésique de chiffres, et le nombre de blocs rappelés au Corsi (qui correspond à un empan mnésique spatial) - soit treize scores.
+
+## Hypothèses
+
+### Imagerie visuelle-objet
+
+Nous nous attendons à ce que les personnes aphantasiques rapportent une capacité d'imagerie visuelle réduite par rapport aux témoins, conformément aux résultats antérieurs [@keoghBlindMindNo2018; @zemanLivesImageryCongenital2015].
+
+### Imagerie visuospatiale
+
+Nous nous attendons à ce que les auto-déclarations des aphantasiques concernant les capacités d'imagerie spatiale s'alignent sur les données d'études antérieures suggérant que, malgré l'absence d'imagerie visuelle, les capacités spatiales (mesurées par des questionnaires et les performances sur des tâches de rotation mentale et visuo-spatiales) semblent être largement préservées dans l'aphantasie [@keoghBlindMindNo2018; @zemanLossImageryPhenomenology2010]. Dans l'hypothèse que nous émettons de la *compensation* de l'imagerie visuelle réduite chez les aphantasiques, on pourrait s'attendre à des scores plus élevés chez les aphantasiques^[Cette hypothèse opérationnelle est celle qui se reflète le plus dans la simulation, illustrant le phénomène mentionné plus bas dans la partie \nameref{simulation} de *wishful thinking* de notre part.]. 
+
+### Raisonnement
+
+D'après les données présentées par l'étude de Zeman et al. [-@zemanPhantasiaPsychologicalSignificance2020] - un taux important d'aphantasiques dans les métiers scientifiques) - on peut faire l'hypothèse que le groupe de participants aphantasiques présentera des capacités de raisonnement (mesurées par le test des Similitudes et les Matrices) plus développés que le groupe de participants non aphantasiques.
+
+### Compréhension en lecture
+
+Dans la mesure où les aphantasiques ont un défaut d'imagerie visuelle-objet, si le texte de compréhension en lecture sollicite des images visuelles, on peut s'attendre à des performances différentes à ce texte entre les aphantasiques et les non aphantasiques, potentiellement inférieures en suivant les conclusions de Suggate et Lenhard [-@suggateMentalImagerySkill2022] : cependant il est à noter que l'imagerie étudiée dans leur étude est plus multi-sensorielle et moins centrée sur l'imagerie spécifiquement visuelle.
+
+### Fonctions exécutives
+
+Conformément à l'hypothèse selon laquelle les aphantasiques auraient recours à des stratégies pour compenser leur déficit en imagerie visuelle, des performances élevées en compréhension de texte pourraient être corrélées à des scores élevés aux épreuves mesurant le fonctionnement exécutif et les capacités d'abstraction telles que le WCST.
+
+## Simulation
+
+En suivant les recommandations des analyses de puissance, nous avons décidé de simuler *N* = 200 participants pour chaque groupe, aphantasiques et non-aphantasiques. Pour simuler ceux-ci, nous avons créé une **matrice des moyennes** et des écarts types arbitraires aux douze tâches et questionnaires pour chaque groupe, sur la base de la littérature et de nos hypothèses (avec donc une part inévitable de *wishful thinking* et de prophétie auto-réalisatrice). Ainsi nous avons fixé des moyennes aux tâches d'imagerie objet faibles chez les aphantasiques et hautes chez les contrôles, des scores aux tâches d'imagerie spatiale et de raisonnement légèrement plus élevés chez les aphantasiques, et des scores aux tâches de fonctions exécutives variables.      
+Nous avons ensuite établi un **modèle de facteurs**, une matrice définissant par des coefficients les liens entre nos douze variables et ce qu'elles "évaluent vraiment", les facteurs cognitifs sous-jacents. Nous avons choisi d'en désigner cinq : l'*imagerie objet*, l'*imagerie spatiale*, le *raisonnement abstrait*, la *mémoire de travail* et *la flexibilité mentale* (ces deux derniers pouvant être regroupés ou non sous la catégorie de *fonctions exécutives*). Nous aurons donc des corrélations entre nos variables évaluées, qu'il faudra éclaircir pour comprendre les aspects fondamentaux qu'elles révèlent.       
+Enfin, nous avons fixé un **modèle d'effets**, i.e. une matrice de covariance entre ces cinq capacités cognitives, qui sont loin d'être indépendantes : la littérature pointe par exemple vers des liens entre imagerie spatiale et raisonnement [@kozhevnikovSpatialVisualizationPhysics2007; @kozhevnikovTradeoffObjectSpatial2010], ou encore les différentes imageries et la mémoire de travail [@dawesCognitiveProfileMultisensory2020; @knightMemoryImageryNo2022; @salwayVisuospatialWorkingMemory1995]. Nous avons donc pondéré ces liens avec des coefficients arbitraires sur cette base et celle de nos prédictions.      
+Notre fonction de simulation a donc eu pour tâche, à l'aide de ces trois matrices (*moyennes*, *facteurs*, *effets*), de créer des moyennes aléatoires - bien que liées par les corrélations sous-jacentes - pour chaque tâche et chaque participant, avec une distribution normale et l'ajout d'erreurs aléatoires normales. Les moyennes ont ensuite été standardisées en *z-scores* pour les analyses (et pour les rassembler si nécessaire). La fonction de simulation a été codée sur R [@R-base] (voir *\nameref{annexes}* pour la liste complète des packages cités dans le document, leurs références ainsi que les liens vers le code décrit ici).
+
+## Analyses                                   
+
+### Transformation des données
+
+Les analyses prévisionnelles ont de même été réalisées sur R.      
+Dans la littérature, les mesures réelles de tâches comparables aux nôtres ont des distributions non-normales [@dawesCognitiveProfileMultisensory2020; @dawesInnerVisionsMind2022; @palermoCongenitalLackExtraordinary2022]. Après vérification des distributions par des tests de Shapiro-Wilk, nous pourrons dans ce cas réaliser des **tests non-paramétriques** tels que des tests de Kruskal-Wallis ou Mann-Whitney-U. Alternativement, nous pourrions réaliser des **transformations des données** pour les rapprocher de la normalité, de type Box-Cox par exemple. L'étude de Dawes et al. [-@dawesCognitiveProfileMultisensory2020] utilise une autre transformation centrée sur la médiane permettant de comparer les différences entre groupes pour chaque tâche selon la même échelle :
+$$
+y = \frac{x - (S.min + \frac{S.max -S.min}{2})}{S.max-S.min}
+$$
+Où y est le score transformé, x le score brut, S.min le score minimum et S.max le maximum. Dans les présentes analyses nous avons choisi la deuxième solution, en standardisant les scores en z-scores via la fonction `scale()` sur R, puis en les ramenant sur une échelle de 0 à 1, avec une médiane à 0.5, via la fonction `rescale()` du package *datawizard* sur R - de sorte à pouvoir construire des profils plus aisément. Nous n'avons pas eu besoin ici d'utiliser une transformation normale, car les données ont déjà été simulées comme tel.
+
+### Analyse Factorielle Multiple et *clustering*
+
+Comme nous l'avons mentionné dans la section *\nameref{simulation}*, nos variables initiales (les scores) ont pour certaines des corrélations très significatives entre elles du fait de la proximité des capacités cognitives qu'elles évaluent. Nous pourrons alors réduire le nombre de variables en isolant des dimensions essentielles qu'elles représentent par une **Analyse Factorielle Multiple** (AFM). Celle-ci nous permettra alors de combiner les scores de différentes tâches pour les ramener à des scores prédictifs liés à des capacités cognitives (e.g. un score en imagerie visuelle au lieu de deux scores au VVIQ et à l'OSIQ-objet). Cette analyse a ici été conduite sur R via la fonction `factor_analysis()` du package *parameters* et `fviz_pca_var()` du package *factoextra*.
+
+De même, nos groupes initiaux ont été définis de manière arbitraire (une limite de score définie par convention, VVIQ < 32) et pourraient représenter une division imprécise des participants. Pour corriger ce biais potentiel nous réaliserons une **analyse de partition non-supervisée** (dite en *clusters*") par l'algorithme des *k-means*, pour ainsi étudier la répartition en groupes qu'il propose en prenant en compte toutes nos variables redéfinies par l'ACP. L'algorithme fonctionne sur la base d'une *matrice de dissimilarité* selon des distances euclidiennes : i.e. il évalue "géométriquement" selon les axes de nos variables la "distance" entre chaque observation (ici les participants). La distance euclidienne en deux dimensions se calcule simplement par le théorème de Pythagore. Pour un nombre plus grand de dimensions, la formule généralisée est la suivante :
+
+$$
+D_{i,j}^2 = \sum_{v=1}^{n}(x_{vi}-x_{vj})^2
+$$
+"D" étant la distance entre i et j dans n dimensions, égale à la somme des carrés des distances dans chaque dimension. Cette distance, ou *"dissimilarité"*, une fois calculée pour toutes les observations (participants) permet d'obtenir une matrice de des distances entre chacune d'elles. Par suite, l'algorithme des *k-means* utilise cette matrice pour diviser les observations en *k* sous-groupes : il rassemble les observations les plus proches entre elles de sorte à minimiser la superposition entre les clusters, i.e. les observations pouvant se trouver dans plusieurs groupes définis. La détermination de *k* - le nombre de sous-groupes (ou *clusters*) idéal pour une partition intéressante - est une étape importante, et peut se réaliser via de nombreux indices. Nous avons ici utilisé la fonction `n_clusters()` du package *parameters* sur R. L'analyse en *clusters* elle-même a été conduite avec la fonction `cluster_analysis()` du package *parameters* et `kmeans()` du package *stats*, et visualisée avec `fviz_cluster()` de *factoextra*.
+
+### Composition des clusters et profils cognitifs
+
+Pour finir, l'algorithme des *k-means* permettra donc de créer des groupes qui auront des profils particuliers sur chaque composante cognitive représentée par nos variables. La composition de ces groupes (en pourcentage d'aphantasiques/non-aphantasiques définis initialement) ainsi que leurs capacités cognitives seront analysées : la variable du *groupe* étant notre seule variable indépendante, nous ajusterons alors des **modèles linéaires** sur nos données et réaliserons des **ANOVAs univariées** en fonction du groupe ainsi que des **t-tests post-hoc** (ou des ANOVAs non-paramétriques et des tests de Mann-Whitney-U dans le cas de données non-normales).      
+
+Pour nos comparaisons, nous devrons choisir une correction pour compenser les tests multiples, la plus utilisée étant la **correction de Bonferroni**. Dawes et al. [-@dawesCognitiveProfileMultisensory2020] en ont utilisée une très conservatrice pour ajuster l'$\alpha$ en fonction de leur nombre d'items dans les questionnaires, donnant $\alpha$ = 0.05/206 = 0.0002. Palermo et al. [-@palermoCongenitalLackExtraordinary2022] ont utilisé une correction de $\alpha$ = 0.05/11 = 0.005 pour les ANOVAs, et de $\alpha$ = 0.05/6 = 0.008 pour les comparaisons post-hoc. Celle que nous utiliserons et le critère pour la choisir restent à définir.

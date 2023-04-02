@@ -1,0 +1,60 @@
+# Annexes {.unnumbered}
+
+  Ce manuscrit a été rédigé avec [R Markdown](https://rmarkdown.rstudio.com), [Pandoc](https://pandoc.org/), [Quarto](https://quarto.org/) et en \LaTeX, médiés par le package *knitr*, dans l'Environnement de Développement Intégré (IDE) [RStudio](https://posit.co/) [@positteamRStudioIntegratedDevelopment2022]. Il a été partagé entre collaborateurs à l'aide de [*GitHub*](https://github.com/), de [Google Docs](https://docs.google.com/) et du package *trackdown*. Le code complet de ce manuscrit, de la simulation, des figures, tables et analyses est accessible dans [*le dossier de ce projet sur GitHub*](https://github.com/m-delem/aphantasia_project.git).     
+
+La simulation et les analyses ont été menées en langage statistique R (version 4.2.0 ; @R-base), sur Windows 10 x64 (build 19044), avec les packages suivants installés :
+ *bayestestR* (version 0.13.0 ; @R-bayestestR),
+ *cluster* (version 2.1.3 ; @R-cluster),
+ *correlation* (version 0.8.3 ; @R-correlation),
+ *datawizard* (version 0.6.5 ; @datawizard2022),
+ *dplyr* (version 1.0.10 ; @R-dplyr),
+ *easystats* (version 0.6.0 ; @R-easystats),
+ *effectsize* (version 0.8.3 ; @R-effectsize),
+ *factoextra* (version 1.0.7 ; @R-factoextra),
+ *forcats* (version 0.5.2 ; @R-forcats),
+ *insight* (version 0.19.0 ; @R-insight),
+ *ggplot2* (version 3.4.0 ; @ggplot22016),
+ *ggpubr* (version 0.5.0; @R-ggpubr),
+ *ggradar* (version 0.2 ; @R-ggradar),
+ *ggraph* (version 2.1.0 ; @R-ggraph),
+ *knitr* (version 1.41 ; [@knitr2014; @knitr2015; @R-knitr]), 
+ *librarian* (version 1.8.1 ; @R-librarian),
+ *modelbased* (version 0.8.6 ; @R-modelbased),
+ *parameters* (version 0.20.2 ; @R-parameters),
+ *pandoc* (version 0.1.0 ; @R-pandoc), 
+ *performance* (version 0.10.2 ; @R-performance),
+ *purrr* (version 0.3.5 ; @R-purrr),
+ *quarto* (version 1.2 ; @R-quarto),
+ *readr* (version 2.1.3; @R-readr).
+ *report* (version 0.5.6 ; @R-report),
+ *rmarkdown* (version 2.20 ; @R-rmarkdown),
+ *see* (version 0.7.4 ; @R-see),
+ *stringr* (version 1.5.0 ; @R-stringr),
+ *tibble* (version 3.1.8 ; @R-tibble),
+ *tidyr* (version 1.2.1; @R-tidyr),
+ *tidyverse* (version 1.3.2; [@R-tidyverse ; @tidyverse2019]),
+ et
+ *trackdown* (version 1.1.1; @kotheTrackdownCollaborativeWriting2021),
+ 
+
+```{=latex}
+\begin{figure}[H]
+```
+```{r,loadings_graph_annex}
+```
+```{=latex}
+\caption{Poids de chaque variable dans l'Analyse Factorielle Multiple à quatre facteurs.}
+\label{loadings_graph_annex}
+\end{figure}
+```
+
+```{=latex}
+\begin{figure}[H]
+```
+```{r,correlation_matrix}
+```
+```{=latex}
+\caption{Matrice de corrélation entre les toutes les variables mesurées.}
+\label{correlation_matrix}
+\end{figure}
+```

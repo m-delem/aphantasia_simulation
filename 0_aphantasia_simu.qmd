@@ -1,0 +1,161 @@
+---
+format: pdf
+pdf-engine: pdflatex
+documentclass: article
+toc: true
+number-sections: true
+number-depth: 3
+cap-location: bottom
+fontsize: 12pt
+linestretch: 1.5
+geometry: margin=1in
+indent: yes
+echo: false
+warning: false
+error: false
+message: false
+fig-align: center
+fig-cap-location: bottom
+fig-height: 8
+fig-width: 10
+tbl-cap-location: bottom
+bibliography: references_simu.bib
+csl: apa.csl
+links-as-notes: true
+link-citations: yes
+lang: fr
+langid: french
+include-in-header: "0_1_header_simu.tex"
+include-before-body: "0_2_beforebody_simu.tex"
+keep-tex: true
+---
+<!-- shelf(quarto) -->
+
+\newpage
+```{r, include=FALSE, cache=FALSE}
+# chargement du code source et reglages
+knitr::read_chunk('./scripts/aphantasia_source_simu.R')
+knitr::opts_chunk$set(out.height = "50%",
+                      out.extra = "",
+                      knitr.table.format = "latex"
+                      )
+options(knitr.kable.NA = "")
+```
+
+```{r,setup}
+# chargement des donnees sans output
+```
+
+<!-- Le manuscrit est divisé en plusieurs documents pour faciliter les modifications locales - ceux-ci sont dans le dossier du Drive. L'output complet du R Markdown (le pdf final) est en pdf dans le Drive, avec le même nom que ce fichier. Les GDoc de ce Drive servent à éditer le texte rédigé du document final : le code R sous-jacent et les analyses des données seront partagées et travaillées sur GitHub, lié localement à RStudio. Le repository GitHub en question : https://github.com/m-delem/aphantasia_project.git -->
+
+<!-- Introduction -->
+```{r, child="1_intro_simu.Rmd"}
+```
+
+<!-- Méthode -->
+```{r, child="2_methode_simu.Rmd"}
+```
+
+<!-- Résultats -->
+```{r, child="3_resultats_simu.Rmd"}
+```
+
+<!-- Discussion --> 
+```{r, child="4_discussion_simu.Rmd"}
+```
+
+\newpage
+# Références {.unnumbered}
+<!-- Insérer les références précisément ici -->
+<div id="refs"></div>
+
+\newpage
+<!-- Annexes -->
+```{r, child="5_annexes_simu.Rmd"}
+```
+
+
+<!-- Session Info for Reproducibility
+
+Analyses were conducted using the R Statistical language (version 4.2.0; R Core Team, 2022) 
+on Windows 10 x64 (build 19044), using the packages :
+- quarto (version 1.2; Allaire J, 2022)
+- rmarkdown (version 2.20; Allaire J et al., 2023)
+- effectsize (version 0.8.3; Ben-Shachar MS et al., 2020)
+- ggradar (version 0.2; Bion R, 2023)
+- purrr (version 0.3.5; Henry L, Wickham H, 2022)
+- ggpubr (version 0.5.0; Kassambara A, 2022)
+- factoextra (version 1.0.7; Kassambara A, Mundt F, 2020)
+- trackdown (version 1.1.1; Kothe E et al., 2021)
+- parameters (version 0.20.2; Lüdecke D et al., 2020)
+- performance (version 0.10.2; Lüdecke D et al., 2021)
+- easystats (version 0.6.0; Lüdecke D et al., 2022)
+- see (version 0.7.4; Lüdecke D et al., 2021)
+- insight (version 0.19.0; Lüdecke D et al., 2019)
+- cluster (version 2.1.3; Maechler M et al., 2022)
+- bayestestR (version 0.13.0; Makowski D et al., 2019)
+- modelbased (version 0.8.6; Makowski D et al., 2020)
+- correlation (version 0.8.3; Makowski D et al., 2020)
+- report (version 0.5.6; Makowski D et al., 2023)
+- tibble (version 3.1.8; Müller K, Wickham H, 2022)
+- datawizard (version 0.6.5; Patil I et al., 2022)
+- ggraph (version 2.1.0; Pedersen T, 2022)
+- librarian (version 1.8.1; Quintans D, 2021)
+- ggplot2 (version 3.4.0; Wickham H, 2016)
+- forcats (version 0.5.2; Wickham H, 2022)
+- stringr (version 1.5.0; Wickham H, 2022)
+- tidyverse (version 1.3.2; Wickham H et al., 2019)
+- dplyr (version 1.0.10; Wickham H et al., 2022)
+- tidyr (version 1.2.1; Wickham H, Girlich M, 2022)
+- readr (version 2.1.3; Wickham H et al., 2022).
+
+References
+----------
+  - Allaire J (2022). _quarto: R Interface to 'Quarto' Markdown Publishing System_. R package version 1.2, <https://CRAN.R-project.org/package=quarto>.
+  - Allaire J, Xie Y, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). _rmarkdown: Dynamic Documents for R_. R package version 2.20,
+<https://github.com/rstudio/rmarkdown>. Xie Y, Allaire J, Grolemund G (2018). _R Markdown: The Definitive Guide_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9781138359338,
+<https://bookdown.org/yihui/rmarkdown>. Xie Y, Dervieux C, Riederer E (2020). _R Markdown Cookbook_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9780367563837,
+<https://bookdown.org/yihui/rmarkdown-cookbook>.
+  - Ben-Shachar MS, Lüdecke D, Makowski D (2020). “effectsize: Estimation of Effect Size Indices and Standardized Parameters.” _Journal of Open Source Software_, *5*(56), 2815. doi:10.21105/joss.02815
+<https://doi.org/10.21105/joss.02815>, <https://doi.org/10.21105/joss.02815>.
+  - Bion R (2023). _ggradar: Create radar charts using ggplot2_. R package version 0.2.
+  - Henry L, Wickham H (2022). _purrr: Functional Programming Tools_. R package version 0.3.5, <https://CRAN.R-project.org/package=purrr>.
+  - Kassambara A (2022). _ggpubr: 'ggplot2' Based Publication Ready Plots_. R package version 0.5.0, <https://CRAN.R-project.org/package=ggpubr>.
+  - Kassambara A, Mundt F (2020). _factoextra: Extract and Visualize the Results of Multivariate Data Analyses_. R package version 1.0.7, <https://CRAN.R-project.org/package=factoextra>.
+  - Kothe E, Callegher CZ, Gambarota F, Linkersdörfer J, Ling M (2021). _trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive_. doi:10.5281/zenodo.5167320
+<https://doi.org/10.5281/zenodo.5167320>, R package version 1.1.1, <https://github.com/claudiozandonella/trackdown>.
+  - Lüdecke D, Ben-Shachar M, Patil I, Makowski D (2020). “Extracting, Computing and Exploring the Parameters of Statistical Models using R.” _Journal of Open Source Software_, *5*(53), 2445.
+doi:10.21105/joss.02445 <https://doi.org/10.21105/joss.02445>.
+  - Lüdecke D, Ben-Shachar M, Patil I, Waggoner P, Makowski D (2021). “performance: An R Package for Assessment, Comparison and Testing of Statistical Models.” _Journal of Open Source Software_, *6*(60),
+3139. doi:10.21105/joss.03139 <https://doi.org/10.21105/joss.03139>.
+  - Lüdecke D, Ben-Shachar M, Patil I, Wiernik B, Makowski D (2022). “easystats: Framework for Easy Statistical Modeling, Visualization, and Reporting.” _CRAN_. R package,
+<https://easystats.github.io/easystats/>.
+  - Lüdecke D, Patil I, Ben-Shachar M, Wiernik B, Waggoner P, Makowski D (2021). “see: An R Package for Visualizing Statistical Models.” _Journal of Open Source Software_, *6*(64), 3393.
+doi:10.21105/joss.03393 <https://doi.org/10.21105/joss.03393>.
+  - Lüdecke D, Waggoner P, Makowski D (2019). “insight: A Unified Interface to Access Information from Model Objects in R.” _Journal of Open Source Software_, *4*(38), 1412. doi:10.21105/joss.01412
+<https://doi.org/10.21105/joss.01412>.
+  - Maechler M, Rousseeuw P, Struyf A, Hubert M, Hornik K (2022). _cluster: Cluster Analysis Basics and Extensions_. R package version 2.1.3 - For new features, see the 'Changelog' file (in the package
+source), <https://CRAN.R-project.org/package=cluster>.
+  - Makowski D, Ben-Shachar M, Lüdecke D (2019). “bayestestR: Describing Effects and their Uncertainty, Existence and Significance within the Bayesian Framework.” _Journal of Open Source Software_, *4*(40),
+1541. doi:10.21105/joss.01541 <https://doi.org/10.21105/joss.01541>, <https://joss.theoj.org/papers/10.21105/joss.01541>.
+  - Makowski D, Ben-Shachar M, Patil I, Lüdecke D (2020). “Estimation of Model-Based Predictions, Contrasts and Means.” _CRAN_. <https://github.com/easystats/modelbased>.
+  - Makowski D, Ben-Shachar M, Patil I, Lüdecke D (2020). “Methods and Algorithms for Correlation Analysis in R.” _Journal of Open Source Software_, *5*(51), 2306. doi:10.21105/joss.02306
+<https://doi.org/10.21105/joss.02306>, <https://joss.theoj.org/papers/10.21105/joss.02306>.
+  - Makowski D, Lüdecke D, Patil I, Thériault R (2023). “Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption.” _CRAN_.
+<https://easystats.github.io/report/>.
+  - Müller K, Wickham H (2022). _tibble: Simple Data Frames_. R package version 3.1.8, <https://CRAN.R-project.org/package=tibble>.
+  - Patil I, Makowski D, Ben-Shachar M, Wiernik B, Bacher E, Lüdecke D (2022). “datawizard: An R Package for Easy Data Preparation and Statistical Transformations.” _Journal of Open Source Software_,
+*7*(78), 4684. doi:10.21105/joss.04684 <https://doi.org/10.21105/joss.04684>.
+  - Pedersen T (2022). _ggraph: An Implementation of Grammar of Graphics for Graphs and Networks_. R package version 2.1.0, <https://CRAN.R-project.org/package=ggraph>.
+  - Quintans D (2021). _librarian: Install, Update, Load Packages from CRAN, 'GitHub', and 'Bioconductor' in One Step_. R package version 1.8.1, <https://CRAN.R-project.org/package=librarian>.
+  - R Core Team (2022). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
+  - Wickham H (2022). _forcats: Tools for Working with Categorical Variables (Factors)_. R package version 0.5.2, <https://CRAN.R-project.org/package=forcats>.
+  - Wickham H (2022). _stringr: Simple, Consistent Wrappers for Common String Operations_. R package version 1.5.0, <https://CRAN.R-project.org/package=stringr>.
+  - Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,
+Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+  - Wickham H, François R, Henry L, Müller K (2022). _dplyr: A Grammar of Data Manipulation_. R package version 1.0.10, <https://CRAN.R-project.org/package=dplyr>.
+  - Wickham H, Girlich M (2022). _tidyr: Tidy Messy Data_. R package version 1.2.1, <https://CRAN.R-project.org/package=tidyr>.
+  - Wickham H, Hester J, Bryan J (2022). _readr: Read Rectangular Text Data_. R package version 2.1.3, <https://CRAN.R-project.org/package=readr>.
+  
+-->
