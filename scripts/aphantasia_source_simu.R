@@ -1,11 +1,11 @@
 # 
-# ---- Aphantasia Project - Source code ----------------------------------------
+# ---- Aphantasia Project Simulation - Source code -----------------------------
 # 
 # Delem, Fourment, Junoy, Leal De Almeida
 # Email : m.delem@univ-lyon2.fr
 # Last update : February 15, 2022
 
-# ---- setup -------------------------------------------------------------------
+# -------------------------------- setup -------------------------------------------------------------------
 
 # librairian (if not here already) for efficient package management
 if (!require(librarian)) install.packages(librarian)
@@ -26,7 +26,12 @@ shelf(
 )
 
 # global theme
-theme_set(theme_bw(base_size = 14, base_family = "serif"))
+theme_set(
+  theme_bw(
+    base_size = 14, 
+    base_family = "serif"
+    )
+  )
 
 # fixing a seed for reproducibility
 set.seed(14051998)
@@ -230,7 +235,7 @@ datascores %>%
         panel.grid.minor = element_blank()) +
   labs(title = NULL)
 
-# ---- ggm_graph ----------------------------------------------------------------
+# ---- ggm_graph ---------------------------------------------------------------
 datascores %>%
   correlation(partial = FALSE) %>%
   filter(abs(r) >= .3) %>% 
